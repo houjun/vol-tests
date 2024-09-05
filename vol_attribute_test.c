@@ -11119,6 +11119,12 @@ test_attr_shared_dtype(void)
         return 0;
     }
 
+    if (vol_cap_flags_g & H5VL_CAP_FLAG_ASYNC) {
+        SKIPPED();
+        HDprintf("    Skip the datatype test for async VOL connector\n");
+        return 0;
+    }
+
     if ((file_id = H5Fopen(vol_test_filename, H5F_ACC_RDWR, H5P_DEFAULT)) < 0) {
         H5_FAILED();
         HDprintf("    couldn't open file\n");
